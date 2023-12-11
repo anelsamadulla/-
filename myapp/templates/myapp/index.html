@@ -1,0 +1,79 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Star Wars People</title>
+        <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    </head>
+<body>
+    <div class="container">
+        <button onclick="fetchRandomData()">Сделать запрос</button>
+        <!-- Display Star Wars character information -->
+        <div class="card">
+            <table id="dataTable">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Birth Year</th>
+                        <th>Eye Color</th>
+                        <th>Gender</th>
+                        <th>Hair Color</th>
+                        <th>Height (cm)</th>
+                        <th>Mass (kg)</th>
+                        <th>Skin Color</th>
+                        <!-- Add other table headers for desired fields -->
+                    </tr>
+                </thead>
+                <tbody id="dataBody">
+                    <!-- Data will be dynamically added here -->
+                </tbody>
+            </table>
+        </div>
+        <!-- Repeat this card structure for multiple characters -->
+    </div>
+
+    <script>
+        async function fetchRandomData() {
+            // Clear previous data
+            document.getElementById('dataBody').innerHTML = '';
+
+            const numberOfCharacters = 10; // Change this to the number of characters you want to display
+            const maxCharacters = 82; // Total number of characters available
+
+            const getRandomInt = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
+
+            const randomCharacterIds = new Set();
+            while (randomCharacterIds.size < numberOfCharacters) {
+                randomCharacterIds.add(getRandomInt(1, maxCharacters));
+            }
+
+            const fetchData = async (id) => {
+                const response = await fetch(`https://swapi.dev/api/people/${id}/`);
+                return await response.json();
+            };
+
+            const displayData = (data) => {
+                const { name, birth_year, eye_color, gender, hair_color, height, mass, skin_color } = data;
+
+                const tableBody = document.getElementById('dataBody');
+                const newRow = tableBody.insertRow();
+
+                const cells = [
+                    name, birth_year, eye_color, gender, hair_color, height, mass, skin_color
+                ];
+
+                cells.forEach((value) => {
+                    const cell = newRow.insertCell();
+                    cell.innerHTML = value;
+                });
+            };
+
+            for (const id of randomCharacterIds) {
+                const data = await fetchData(id);
+                displayData(data);
+            }
+        }
+    </script>
+</body>
+</html>

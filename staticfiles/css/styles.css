@@ -1,0 +1,67 @@
+/* Styles for body and container */
+body {
+    font-family: 'Arial', sans-serif;
+    color: #fbf7f7; /* white text */
+    padding: 20px;
+    margin: 0;
+    background-color: #0f0f0f; /* Black background */
+    background-image: url('../images/Star-wars-logo-new-tall.webp'); /* Replace with your image path */
+    background-size: cover;
+    background-position: center;
+    font-weight: bold; /* Make the text bold */
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh; /* Full viewport height */
+}
+/* Styles for the button */
+button {
+    background-color: #010101; /* Black button */
+    color: #ffffff; /* White text */
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 20px; /* Space below the button */
+    font-size: 16px;
+    transition: background-color 0.3s ease; /* Smooth transition on hover */
+    font-weight: bold; /* Make the text bold */
+}
+
+button:hover {
+    background-color: rgb(158, 153, 6); /* Darker shade on hover */
+}
+
+/* Styles for the card and table */
+.card {
+    background-color: rgba(255, 255, 255, 0.1); /* Transparent white */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px; /* Space above the table */
+}
+
+thead {
+    background-color: #333333; /* Dark header background */
+    color: #f7ecec; /* White text for header */
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+    border: 1px solid #dddddd; /* Light border between cells */
+}
+
+tbody tr:nth-child(even) {
+    background-color: #f1ecec; /* Alternate row color */
+    color: #000000; /* Black text color */
+}
